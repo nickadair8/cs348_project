@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% block title %} Home Page {% endblock %}
+{% extends 'base.html' %}
 {% block content %}
-<p>this is the home page</p>
+  <div class="container mt-5">
+    <h1>Welcome to the Lego Management System</h1>
+    <p>Manage Themes, Lego Sets, Customers, and Reviews with ease.</p>
+    <div class="list-group">
+      <a href="{% url 'sets' %}" class="list-group-item list-group-item-action">Manage Lego Sets</a>
+    </div>
+  </div>
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Lego Sets</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Set ID</th>
+          <th scope="col">Set Name</th>
+          <th scope="col">Piece Count</th>
+          <th scope="col">Price ($)</th>
+          <th scope="col">Theme</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lego_set in sets %}
+        <tr>
+          <td>{{ lego_set.set_id }}</td>
+          <td>{{ lego_set.name }}</td>
+          <td>{{ lego_set.piece_count }}</td>
+          <td>{{ lego_set.price }}</td>
+          <td>{{ lego_set.theme_id.theme_name }}</td>
+          <td>{{ lego_set.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="list-group mt-4">
+    <a href="{% url 'home' %}" class="list-group-item list-group-item-action">Home Page</a>
+  </div>
+</div>
+{% endblock %}
