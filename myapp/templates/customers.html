@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Customers</h1>
+
+  <!-- Create Button -->
+  <a href="{% url 'customer_create' %}" class="btn btn-success mb-4">Add New Customer</a>
+
+  <!-- Filter Form -->
+  <form method="get" class="mb-4">
+    <div class="form-row">
+      <!-- Lego Set Filter -->
+      <div class="form-group col-md-3">
+        {{ form.lego_set.label_tag }}
+        {{ form.lego_set }}
+      </div>
+      <!-- Budget Range Filter -->
+      <div class="form-group col-md-3">
+        {{ form.budget_range.label_tag }}
+        {{ form.budget_range }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+    <a href="{% url 'customers' %}" class="btn btn-secondary ml-2">Clear Filters</a>
+  </form>
+
+  <!-- Customers Table -->
+  <div class="table-responsive">
+    {% if customers %}
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Customer Lego ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lego Set</th>
+            <th scope="col">Budget ($)</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customers %}
+          <tr>
+            <td>{{ customer.lego_rewards_id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.set_id.name }}</td>
+            <td>{{ customer.budget }}</td>
+            <td>
+              <a href="{% url 'customer_update' customer.id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'customer_delete' customer.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        No customers found. Please adjust your filters and try again.
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="list-group mt-4">
+    <a href="{% url 'home' %}" class="list-group-item list-group-item-action">Home Page</a>
+  </div>
+</div>
+{% endblock %}

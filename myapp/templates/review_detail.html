@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Review Details</h1>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Review by {{ review.lego_rewards_id.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }} Stars</h6>
+      <p class="card-text">{{ review.review_text }}</p>
+    </div>
+  </div>
+
+  <div class="list-group mt-4">
+    <a href="{% url 'sets' %}" class="list-group-item list-group-item-action">Back to Lego Sets</a>
+  </div>
+</div>
+{% endblock %}

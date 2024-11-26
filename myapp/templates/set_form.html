@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">{{ form.instance.pk|yesno:"Edit Lego Set,Add Lego Set" }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'sets' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
